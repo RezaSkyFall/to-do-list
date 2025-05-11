@@ -7,7 +7,24 @@ import { CssBaseline } from "@mui/material";
 import Rtl from "./components/Rtl";
 
 const theme = createTheme({
-  direction: "rtl", // اضافه کردن راستچین
+  palette: {
+    mode: "dark",
+    primary: { main: "#4F46E5" },
+  },
+  direction: "rtl", // اضافه کردن راستچین,
+  typography: {
+    fontFamily: "IranYekan, sans-serif", // فونت پیش فرض
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+      @font-face {
+        font-family: 'IranYekan';
+        src: url('./fonts/iranyekanwebregular(fanum).woff2') format('woff2');
+        }
+      `,
+    },
+  },
 });
 
 document.body.dir = "rtl"; // ست کردن راستچین برای کل پروژه

@@ -1,5 +1,5 @@
-import { Box, Checkbox, IconButton, TextField } from "@mui/material";
-import { Delete, Edit } from "@mui/icons-material";
+import { Box, Checkbox, IconButton, Paper, TextField } from "@mui/material";
+import { Delete, DeleteOutline, Edit, EditOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { Todo, useTodoStore } from "../store/todoStore";
 
@@ -20,47 +20,48 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   };
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      p={1}
-      borderBottom="1px solid #ddd"
-    >
-      <Box display="flex" alignItems="center" gap={1}>
-        <Checkbox
-          checked={todo.completed}
-          onChange={() => toggleTodo(todo.id)}
-        />
-        {isEditing ? (
-          <TextField
-            value={editedTitle}
-            size="small"
-            onChange={(e) => setEditedTitle(e.target.value)}
-            onBlur={handleEdit}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleEdit();
-            }}
+    <Paper>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        p={1}
+      >
+        <Box display="flex" alignItems="center" gap={1}>
+          <Checkbox
+            checked={todo.completed}
+            onChange={() => toggleTodo(todo.id)}
           />
-        ) : (
-          <span
-            style={{
-              textDecoration: todo.completed ? "line-through" : "none",
-            }}
-          >
-            {todo.title}
-          </span>
-        )}
+          {isEditing ? (
+            <TextField
+              value={editedTitle}
+              size="small"
+              onChange={(e) => setEditedTitle(e.target.value)}
+              onBlur={handleEdit}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleEdit();
+              }}
+            />
+          ) : (
+            <span
+              style={{
+                textDecoration: todo.completed ? "line-through" : "none",
+              }}
+            >
+              {todo.title}
+            </span>
+          )}
+        </Box>
+        <Box>
+          <IconButton onClick={() => setIsEditing(!isEditing)}>
+            <EditOutlined />
+          </IconButton>
+          <IconButton onClick={() => deleteTodo(todo.id)}>
+            <DeleteOutline />
+          </IconButton>
+        </Box>
       </Box>
-      <Box>
-        <IconButton onClick={() => setIsEditing(!isEditing)}>
-          <Edit />
-        </IconButton>
-        <IconButton onClick={() => deleteTodo(todo.id)}>
-          <Delete />
-        </IconButton>
-      </Box>
-    </Box>
+    </Paper>
   );
 };
 

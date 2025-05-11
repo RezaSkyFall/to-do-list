@@ -13,15 +13,15 @@ const AddTodo = () => {
   };
 
   return (
-    <Box display="flex" gap={2} my={2}>
+    <Box display="flex" gap={1} my={2}>
       <TextField
         label="اضافه کردن کار جدید"
-        variant="outlined"
+        variant="filled"
         fullWidth
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <Button variant="contained" onClick={handleAdd}>
+      <Button variant="contained" onClick={handleAdd} sx={{ minWidth: 140 }}>
         افزودن
       </Button>
     </Box>

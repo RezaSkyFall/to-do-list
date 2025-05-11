@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useTodoStore } from "../store/todoStore";
 import TodoItem from "./TodoItem";
 
@@ -14,11 +14,11 @@ const TodoList = () => {
   }
 
   return (
-    <Box>
+    <Stack gap={1}>
       {todos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
-    </Box>
+    </Stack>
   );
 };
 
